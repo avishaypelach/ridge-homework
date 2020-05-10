@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Tree from './Components/Tree/Tree';
 
-function App() {
+const FirstMock = require("./Utils/Server/FirstMock.json");
+const SecondMock = require("./Utils/Server/SecondMock.json");
+
+export default () => {
+  const [url, updateURL] = useState<string>(FirstMock);
+  let [seconds, setSeconds] = useState<number>(9);
+  const [isActive, setIsActive] = useState(true);
+
+  /**
+   * Simulate URL change after 1 seconds.
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      updateURL(SecondMock)
+    }, 10000);
+
+    /**
+     * Starting count down.
+     */
+    let interval = null;
+
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds - 1);
+      }, 1000);
+    } else if (!isActive && seconds !== 0) {
+      setIsActive(false);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+
+  }, [isActive, seconds, url])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {seconds > 0 ? <div>{`Simulation of URL being change in ${seconds}`}</div> : null}
+        <Tree url={url} />
       </header>
     </div>
   );
 }
-
-export default App;

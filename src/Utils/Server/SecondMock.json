@@ -1,0 +1,69 @@
+{
+  "totalNutrients": {
+    "ENERC_KCAL": {
+      "label": "Energy",
+      "quantity": 21814.306200000003,
+      "unit": "kcal"
+    },
+    "FAT": {
+      "label": "Fat",
+      "quantity": 1562.5579472000002,
+      "unit": "g"
+    },
+    "FASAT": {
+      "label": "Saturated",
+      "quantity": 538.5602623999998,
+      "unit": "g"
+    },
+    "FATRN": {
+      "label": "Trans",
+      "quantity": 0.015,
+      "unit": "g"
+    },
+    "CHOCDF": {
+      "label": "Carbs",
+      "quantity": 390.41195,
+      "unit": "g"
+    },
+    "FIBTG": {
+      "label": "Fiber",
+      "quantity": 48.5609,
+      "unit": "g"
+    },
+    "SUGAR": {
+      "label": "Sugars",
+      "quantity": 205.60635,
+      "unit": "g"
+    },
+    "PROCNT": {
+      "label": "Protein",
+      "quantity": 1466.6697507999997,
+      "unit": "g"
+    },
+    "CHOLE": {
+      "label": "Cholesterol",
+      "quantity": 6153.39888,
+      "unit": "mg"
+    },
+    "NA": {
+      "label": "Sodium",
+      "quantity": 14854.027320000001,
+      "unit": "mg"
+    }
+  },
+  "yield": 15.0,
+  "calories": 21814,
+  "dietLabels": [
+    "LOW_CARB"
+  ],
+  "healthLabels": [
+    "DAIRY_FREE",
+    "MILK_FREE",
+    "PEANUT_FREE",
+    "TREE_NUT_FREE",
+    "SOY_FREE",
+    "FISH_FREE",
+    "SHELLFISH_FREE"
+  ],
+  "cautions": []
+}

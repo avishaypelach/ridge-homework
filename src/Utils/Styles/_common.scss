@@ -1,0 +1,25 @@
+@import "./colors";
+$gap: 5px;
+
+@function use-gap($size) {
+  @return $size * $gap;
+}
+
+html * {
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+html,
+body {
+  box-sizing: content-box;
+  background-color: $background-color;
+  color: red !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+}
