@@ -5,41 +5,40 @@ import Tree from './Components/Tree/Tree';
 const FirstMock = require("./Utils/Server/FirstMock.json");
 const SecondMock = require("./Utils/Server/SecondMock.json");
 
+const countInfo = (count: number) => `Simulation of URL change in ${count}`
+
 export default () => {
   const [url, updateURL] = useState<string>(FirstMock);
-  let [seconds, setSeconds] = useState<number>(9);
-  const [isActive, setIsActive] = useState(true);
+  const [count, updateCount] = useState<number>(9);
 
   /**
-   * Simulate URL change after 1 seconds.
+   * Simulate URL change after 10 seconds.
    */
   useEffect(() => {
-    setTimeout(() => {
-      updateURL(SecondMock)
-    }, 10000);
-
     /**
-     * Starting count down.
+     * Handle cunt down.
      */
     let interval = null;
 
-    if (isActive) {
+    if (count > 0) {
       interval = setInterval(() => {
-        setSeconds(seconds => seconds - 1);
+        updateCount(count => count - 1);
       }, 1000);
-    } else if (!isActive && seconds !== 0) {
-      setIsActive(false);
+    } else {
+      updateURL(SecondMock)
+
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
+  }, [count]);
 
-  }, [isActive, seconds, url])
+
 
   return (
     <div className="App">
       <header className="App-header">
-        {seconds > 0 ? <div>{`Simulation of URL being change in ${seconds}`}</div> : null}
+        {count ? <div>{countInfo(count)}</div> : null}
         <Tree url={url} />
       </header>
     </div>

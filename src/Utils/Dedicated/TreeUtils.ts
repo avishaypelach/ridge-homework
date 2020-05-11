@@ -1,7 +1,7 @@
 export const genId = () => `${Math.random()}`;
 
-export const createTreeStructure = (obj: any) => {
-  let ret = [];
+const _createTreeStructure = (obj: any, fatherLabel?: any) => {
+  let ret: any[] = [];
 
   if (typeof obj === "object" && !Array.isArray(obj)) {
     for (let field in obj) {
@@ -12,34 +12,52 @@ export const createTreeStructure = (obj: any) => {
         let arr = [];
 
         for (let item of value) {
-          arr.push(createTreeStructure(item));
+          arr.push(_createTreeStructure(item, value));
         }
 
         ret.push({
-          label: key,
+          label: `${key}`,
           key: genId(),
           nodes: arr,
         });
       } else if (typeof value === "object") {
         ret.push({
-          label: key,
+          label: `${key}`,
           key: genId(),
-          nodes: createTreeStructure(value),
+          nodes: _createTreeStructure(value),
         })
       } else {
         ret.push({
-          label: key,
+          label: `${key}`,
           key: genId(),
-          nodes: value,
+          nodes: _createTreeStructure(value),
         })
       }
     }
   } else {
-    ret.push({
-      label: obj,
-      key: genId(),
-      nodes: obj,
-    })
+    if (fatherLabel) {
+      return {
+        label: `${obj}`,
+        key: genId(),
+        nodes: [],
+      }
+    } else {
+      ret.push({
+        label: `${obj}`,
+        key: genId(),
+        nodes: [],
+      })
+    }
+  }
+
+  return ret;
+}
+
+export const createTreeStructure = (obj: any) => {
+  let ret = _createTreeStructure(obj);
+
+  if (!Array.isArray(ret)) {
+    ret = [ret];
   }
 
   return ret;

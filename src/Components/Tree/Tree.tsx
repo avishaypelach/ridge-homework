@@ -4,10 +4,11 @@ import { createTreeStructure } from "../../Utils/Dedicated/TreeUtils";
 import TreeMenu from 'react-simple-tree-menu';
 import 'react-simple-tree-menu/dist/main.css';
 
+const NODES_TREE = "Nodes Tree"
 const NO_DATA_TO_SHOW = "No data to show"
 
 export default ({ url }: NTree.IProps) => {
-  const [nodes, updateNodes] = useState<any>([]);
+  const [nodes, updateNodes] = useState<any>({});
 
   /**
    * Receive data when component mount and when url change.
@@ -19,12 +20,12 @@ export default ({ url }: NTree.IProps) => {
   /**
    * Convert data to client friendly.
    */
-  const nodesTree = createTreeStructure(nodes);
+  const nodesTree: NTree.INode[] = createTreeStructure(nodes);
 
   return (
     <div className={Style.container}>
-      <h3>Nodes Tree</h3>
-      {nodesTree.length ?
+      <h3>{NODES_TREE}</h3>
+      {nodesTree ?
         <TreeMenu
           data={nodesTree}
           hasSearch={false}

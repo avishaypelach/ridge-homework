@@ -1,6 +1,6 @@
 declare namespace NTree {
   interface IProps {
-    url: string;
+    url: any;
   }
 
   interface INode {
